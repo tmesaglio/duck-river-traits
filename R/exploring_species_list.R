@@ -5,16 +5,13 @@ sl<-read_csv("species_lists.csv")
 #trying ausflora package
 remotes::install_github("traitecoevo/ausflora")
 library(ausflora)
-tmp <- dataset_access_function("0.0.0.9000")
-aligned_data <- align_taxa(sl$species)
-
 sl<-read_csv("species_lists.csv")
 sl$species_f<-iconv(sl$species, "UTF-8", "UTF-8",sub='x') 
 aligned_data <- align_taxa(sl$species_f)
 
 
 
-#a bit of plotting
+#a bit of manipulation
 unique(sl$source)
 sl$source_lumped<-case_when(sl$source=="Mesaglio2022" ~ "recent",
           TRUE ~ "1979-1992")
@@ -23,22 +20,31 @@ sl %>%
   group_by(source_lumped,establishment_means) %>%
   summarize(num_species=n_distinct(species))->sr_summary
 
-ggplot(sr_summary,aes(x=establishment_means,fill=source_lumped,y=num_species))+
-  geom_col(position="dodge")+theme_bw()
 
-library(taxonlookup)
-?plant_lookup
+#adding column for status
+sl %>%
+  group_by(species) %>%
+  summarize(how_many_surveys=n_distinct(source_lumped))->persistence_summary
+
+sl %>%
+  left_join(persistence_summary) %>%
+  mutate(status=case_when(
+    how_many_surveys=="2" ~ "persistent",
+    how_many_surveys=="1" & source_lumped=="1979-1992" ~ "extirpated",
+    how_many_surveys=="1" & source_lumped=="recent"~ "coloniser"
+  ))->sl2
+
 lt<-lookup_table(unique(sl$species),missing_action="NA",by_species = TRUE)
-
 lt2<-  rownames_to_column(lt,var="species")
-
-sl2<-left_join(sl,lt2)
+sl2<-left_join(sl2,lt2)
 
 sl2 %>%
-  group_by(source_lumped,establishment_means,group) %>%
-  summarize(num_species=n_distinct(species))->sr_summary2
+  filter(!grepl("sp\\.",species)) %>% # hack for now
+  group_by(status,establishment_means) %>%
+  summarise(n=n_distinct(species))->gs
 
-a<-filter(sl2,is.na(group))
+gs %>%
+  ggplot(aes(x=establishment_means,fill=status,y=n))+
+  geom_col(position="dodge")+theme_bw()
 
-ggplot(sr_summary2,aes(x=establishment_means,fill=source_lumped,y=num_species))+
-  geom_col(position="dodge")+theme_bw()+facet_grid(group~.,scales = "free_y")
+
