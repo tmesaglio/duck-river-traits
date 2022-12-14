@@ -446,8 +446,8 @@ Dysphania littoralis,Price1979,original,native
 Dysphania pumilio,Mesaglio2022,original,native
 Echinochloa crus-galli,Mesaglio2022,original,non-native
 Echinochloa crus-galli,Price1979,original,non-native
+Echinochloa crus-galli,RawlingsNeff1990,original,non-native
 Echinochloa telmatophila,Price1988,original,native
-Echinochlora crus-galli,RawlingsNeff1990,original,non-native
 Echinopogon caespitosus,Price1988,original,native
 Echinopogon caespitosus,Mesaglio2022,original,native
 Echinopogon caespitosus,Price1979,original,native
@@ -510,7 +510,7 @@ Erigeron sumatrensis,Price1979,original,non-native
 Eriochloa pseudoacrotricha,Price1988,original,native
 Eriochloa pseudoacrotricha,Mesaglio2022,original,native
 Eriochloa pseudoacrotricha,Price1979,original,native
-Erythina crista-galli,Price1979,amended,non-native
+Erythrina crista-galli,Price1979,amended,non-native
 Erythrina crista-galli,Mesaglio2022,original,non-native
 Eucalyptus amplifolia,Price1988,original,native
 Eucalyptus amplifolia,Mesaglio2022,original,native
@@ -560,10 +560,10 @@ Euphorbia drummondii,Price1979,original,native
 Euphorbia maculata,Mesaglio2022,original,non-native
 Euphorbia peplus,Mesaglio2022,original,non-native
 Euphorbia peplus,Price1979,original,non-native
+Euphorbia peplus,RawlingsNeff1990,original,non-native
 Euphorbia prostrata,Mesaglio2022,original,non-native
 Euphorbia prostrata,Price1979,original,non-native
 Euphorbia serpens,Mesaglio2022,original,non-native
-Eurphorbia peplus,RawlingsNeff1990,original,non-native
 Euryops chrysanthemoides,Mesaglio2022,original,non-native
 Eustrephus latifolius,Price1988,original,native
 Eustrephus latifolius,Mesaglio2022,original,native
@@ -713,6 +713,7 @@ Juncus articulatus,Price1979,original,non-native
 Juncus bufonius,Price1988,original,native
 Juncus bufonius,Mesaglio2022,original,native
 Juncus bufonius,Price1979,original,native
+Juncus capitatus,RawlingsNeff1990,original,non-native
 Juncus continuus,GibsonBell1992,original,native
 Juncus homalocaulis,Price1988,original,native
 Juncus homalocaulis,Price1979,original,native
@@ -733,7 +734,6 @@ Juncus usitatus,Price1988,original,native
 Juncus usitatus,Mesaglio2022,original,native
 Juncus usitatus,Price1979,original,native
 Juncus vaginatus,Price1979,original,native
-Junus capitatus,RawlingsNeff1990,original,non-native
 Kennedia rubicunda,Price1988,original,native
 Kennedia rubicunda,Mesaglio2022,original,native
 Kennedia rubicunda,Price1979,original,native
@@ -1231,7 +1231,7 @@ Sisyrinchium rosulatum,Mesaglio2022,original,non-native
 Solanum americanum,Mesaglio2022,original,non-native
 Solanum americanum,Price1979,original,non-native
 Solanum chenopodioides,Mesaglio2022,original,non-native
-Solanum linnaeum,Price1979,original,non-native
+Solanum linnaeanum,Price1979,original,non-native
 Solanum lycopersicum,Mesaglio2022,original,non-native
 Solanum mauritianum,RawlingsNeff1990,original,non-native
 Solanum mauritianum,Mesaglio2022,original,non-native
@@ -1357,7 +1357,7 @@ Vicia sativa,Price1979,original,non-native
 Vicia tetrasperma,Mesaglio2022,original,non-native
 Vicia tetrasperma,Price1979,original,non-native
 Vinca sp.,RawlingsNeff1990,original,non-native
-Vincetoxicum barbata,Price1988,original,native
+Vincetoxicum barbatum,Price1988,original,native
 Vincetoxicum barbatum,Mesaglio2022,original,native
 Vincetoxicum barbatum,Price1979,original,native
 Vincetoxicum woollsii,Mesaglio2022,original,native
