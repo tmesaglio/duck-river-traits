@@ -13,3 +13,5 @@ distinct_aus <- distinct_aus %>%
   )
 
 x <- setdiff(distinct_sl, distinct_aus) 
+
+write_csv(x,"data/austraits_missing_species.csv")
