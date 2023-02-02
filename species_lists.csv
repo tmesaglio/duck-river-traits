@@ -1,4 +1,4 @@
-species,source,name,establishment_means
+taxon_name,source,name,establishment_means
 Abelia x grandiflora,Price1979,original,non-native
 Acacia baileyana,RawlingsNeff1990,original,non-native
 Acacia baileyana,Mesaglio2022,original,non-native
@@ -1007,7 +1007,6 @@ Pelargonium sp.,RawlingsNeff1990,original,non-native
 Pellaea falcata,Price1988,original,native
 Pellaea falcata,Mesaglio2022,original,native
 Pellaea falcata,Price1979,original,native
-Pellaea nana,Mesaglio2022,original,native
 Pellaea viridis,Mesaglio2022,original,non-native
 Persicaria decipiens,Price1988,original,native
 Persicaria decipiens,Mesaglio2022,original,native
