@@ -235,6 +235,14 @@ y4 <- setdiff(APC_sp, check4)
 #first though, write up the csv for this trait so I can manually collapse rows (multiple values for same species)
 write_csv(trait4a,"data/life_history.csv")
 
+#just checking if Microtis should be perennial or short lived perennial
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Microtis rara","Microtis oblonga","Microtis parviflora","Microtis arenaria","Microtis unifolia","Microtis angusii")) %>%
+  filter(trait_name == "life_history") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> microtis
+
+
 #also tack on value for single missing species here (Microtis), then read back in and append
 historyv2 <- read_csv("life_history_v2.csv")
 
