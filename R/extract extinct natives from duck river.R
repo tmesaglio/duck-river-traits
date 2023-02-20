@@ -247,3 +247,79 @@ write_csv(trait4a,"data/life_history.csv")
 historyv2 <- read_csv("life_history_v2.csv")
 
 master4 <-dplyr::left_join(master3, historyv2, by = "taxon_name")
+
+#next is photosynthetic pathway
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% spvector) %>%
+  filter(trait_name == "photosynthetic_pathway") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> trait5
+
+#photosynthesis by species 
+trait5 %>%         
+  group_by(taxon_name) %>%
+  summarize(photosynthetic_pathway=value) ->trait5a
+
+#see which species are in Austraits, but have no data for this trait 
+check5<-data.frame(trait5$taxon_name)
+
+check5<-check5 %>% 
+  rename(
+    taxon_name = trait5.taxon_name
+  )
+
+y5 <- setdiff(APC_sp, check5)
+
+#first though, write up the csv for this trait so I can manually collapse rows (multiple values for same species)
+write_csv(trait5a,"data/photosynthesis.csv")
+
+#add missing species in there too, then load in
+#first check some of said missing species
+
+#dysphania
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Dysphania ambrosioides","Dysphania carinata","Dysphania cristata","Dysphania glomulifera","Dysphania kalpari","Dysphania melanocarpa","Dysphania multifida","Dysphania plantaginella","Dysphania platycarpa","Dysphania pumilio","Dysphania rhadinostachya","Dysphania simulans","Dysphania truncata")) %>%
+  filter(trait_name == "photosynthetic_pathway") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> dysphaniaphoto
+
+#isotoma
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Isotoma anethifolia","Isotoma axillaris","Isotoma petraea","Isotoma tridens")) %>%
+  filter(trait_name == "photosynthetic_pathway") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> isotomaphoto
+
+#juncus
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% junvector) %>%
+  filter(trait_name == "photosynthetic_pathway") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> juncusphoto
+
+#lomandra
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Lomandra bracteata","Lomandra brevis","Lomandra collina","Lomandra confertifolia","Lomandra cylindrica","Lomandra effusa","Lomandra elongata","Lomandra filiformis","Lomandra glauca","Lomandra gracilis","Lomandra hystrix","Lomandra laxa","Lomandra leucocephala","Lomandra longifolia","Lomandra micrantha","Lomandra montana","Lomandra multiflora","Lomandra obliqua","Lomandra patens","Lomandra spicata")) %>%
+  filter(trait_name == "photosynthetic_pathway") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> lomandraphoto
+
+#tricoryne
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Tricoryne elatior","Tricoryne anceps")) %>%
+  filter(trait_name == "photosynthetic_pathway") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> tricorynephoto
+
+#microtis
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Microtis rara","Microtis oblonga","Microtis parviflora","Microtis arenaria","Microtis unifolia","Microtis angusii")) %>%
+  filter(trait_name == "photosynthetic_pathway") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> microtisphoto
+
+photov2 <- read_csv("photosynthesis_v2.csv")
+
+master5 <-dplyr::left_join(master4, photov2, by = "taxon_name")
+
+#let's try spinescence
