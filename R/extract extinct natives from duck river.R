@@ -322,4 +322,81 @@ photov2 <- read_csv("photosynthesis_v2.csv")
 
 master5 <-dplyr::left_join(master4, photov2, by = "taxon_name")
 
-#let's try spinescence
+#fire response
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% spvector) %>%
+  filter(trait_name == "fire_response") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> trait6
+
+#fire by species 
+trait6 %>%         
+  group_by(taxon_name) %>%
+  summarize(fire_response=value) ->trait6a
+
+#see which species are in Austraits, but have no data for this trait 
+check6<-data.frame(trait6$taxon_name)
+
+check6<-check6 %>% 
+  rename(
+    taxon_name = trait6.taxon_name
+  )
+
+y6 <- setdiff(APC_sp, check6)
+
+#first though, write up the csv for this trait so I can manually collapse rows (multiple values for same species)
+write_csv(trait6a,"data/fire.csv")
+
+#cyperus
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% cypvector) %>%
+  filter(trait_name == "fire_response") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> cyperusfire
+
+#dysphania
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Dysphania ambrosioides","Dysphania carinata","Dysphania cristata","Dysphania glomulifera","Dysphania kalpari","Dysphania melanocarpa","Dysphania multifida","Dysphania plantaginella","Dysphania platycarpa","Dysphania pumilio","Dysphania rhadinostachya","Dysphania simulans","Dysphania truncata")) %>%
+  filter(trait_name == "fire_response") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> dysphaniafire
+
+#echinochloa
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Echinochloa colona","Echinochloa crus-galli","Echinochloa crus-pavonis","Echinochloa esculenta","Echinochloa frumentacea","Echinochloa inundata","Echinochloa lacunaria","Echinochloa microstachya","Echinochloa oryzoides","Echinochloa polystachya","Echinochloa pyramidalis","Echinochloa turneriana")) %>%
+  filter(trait_name == "fire_response") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> echinochloafire
+
+#isotoma
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Isotoma anethifolia","Isotoma axillaris","Isotoma petraea","Isotoma tridens")) %>%
+  filter(trait_name == "fire_response") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> isotomafire
+
+#juncus
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% junvector) %>%
+  filter(trait_name == "fire_response") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> juncusfire
+
+#microtis
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Microtis rara","Microtis oblonga","Microtis parviflora","Microtis arenaria","Microtis unifolia","Microtis angusii")) %>%
+  filter(trait_name == "fire_response") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> microtisfire
+
+#paspalum
+(austraits %>% join_all)$traits %>%
+  filter(taxon_name %in% c("Paspalum ciliatifolium","Paspalum conjugatum","Paspalum dilatatum","Paspalum distichum","Paspalum longifolium","Paspalum mandiocanum","Paspalum nicorae","Paspalum notatum","Paspalum orbiculare","Paspalum paniculatum","Paspalum quadrifarium","Paspalum regnellii","Paspalum scrobiculatum","Paspalum urvillei")) %>%
+  filter(trait_name == "fire_response") %>%
+  filter(life_stage=="adult" & 
+           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> paspalumfire
+
+
+firev2 <- read_csv("fire_v2.csv")
+
+master6 <-dplyr::left_join(master5, firev2, by = "taxon_name")
