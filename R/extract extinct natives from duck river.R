@@ -407,3 +407,11 @@ master6 <-dplyr::left_join(master5, firev2, by = "taxon_name")
 water <- read_csv("water.csv")
 
 master7 <-dplyr::left_join(master6, water, by = "taxon_name")
+
+#now finally reappend the APC columns (family, genus, authors)
+
+master8<-dplyr::left_join(master7, APC, by = "taxon_name")
+
+master9<-master8[,c(1,9,10,11,2,3,4,5,6,7,8)]
+
+write_csv(master9,"data/extinct_natives.csv")
