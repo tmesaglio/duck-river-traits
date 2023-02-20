@@ -400,3 +400,10 @@ write_csv(trait6a,"data/fire.csv")
 firev2 <- read_csv("fire_v2.csv")
 
 master6 <-dplyr::left_join(master5, firev2, by = "taxon_name")
+
+
+#the final trait will be a 'water associated' one that I'm manually scoring based on online floras, so will do that in excel then load it in to append
+
+water <- read_csv("water.csv")
+
+master7 <-dplyr::left_join(master6, water, by = "taxon_name")
