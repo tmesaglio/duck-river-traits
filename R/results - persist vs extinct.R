@@ -23,6 +23,9 @@ combined <- combined %>% arrange(taxon_name)
 combined[203, 3] = "Microtis" 
 combined[203, 4] = "Orchidaceae" 
 
+#AMEND ONE VALUE AFTER RECTIFIED HERBARIUM ID: DROSERA PELTATA IS NOW A PERSISTER, NOT EXTINCT
+combined[94, 12] = "persister"
+
 #write
 write_csv(combined,"data/final_master_list.csv")
 
