@@ -64,13 +64,15 @@ chisq_result6 <- chisq.test(cont_table6)
 library(ggstatsplot)
 library(ggplot2)
 
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+
 
 p1 <- ggbarstats(
   data = combined,
   x = dispersal_syndrome,
   y = status
 ) +
-  labs(caption = NULL)
+  labs(caption = NULL) + theme_classic() + scale_fill_manual(values=cbPalette)
 
 p1
 
@@ -81,7 +83,7 @@ p2<-ggbarstats(
   x = growth_habit,
   y = status
 ) +
-  labs(caption = NULL)
+  labs(caption = NULL)+ theme_classic() + scale_fill_manual(values=cbPalette)
 
 p2
 
@@ -92,7 +94,7 @@ p3<-ggbarstats(
   x = life_history,
   y = status
 ) +
-  labs(caption = NULL)
+  labs(caption = NULL)+ theme_classic() + scale_fill_manual(values=cbPalette)
 
 p3
 
@@ -103,7 +105,7 @@ p4<-ggbarstats(
   x = photosynthetic_pathway,
   y = status
 ) +
-  labs(caption = NULL)
+  labs(caption = NULL)+ theme_classic() + scale_fill_manual(values=cbPalette)
 
 p4
 
@@ -114,7 +116,7 @@ p5<-ggbarstats(
   x = fire_response,
   y = status
 ) +
-  labs(caption = NULL)
+  labs(caption = NULL)+ theme_classic() + scale_fill_manual(values=cbPalette)
 
 p5
 
@@ -125,7 +127,7 @@ p6<-ggbarstats(
   x = water_association,
   y = status
 ) +
-  labs(caption = NULL)
+  labs(caption = NULL)+ theme_classic() + scale_fill_manual(values=cbPalette)
 
 p6
 
