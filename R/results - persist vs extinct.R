@@ -3,145 +3,58 @@ library(dplyr)
 
 #read in two files: extinct and persist
 
-extinct <- read_csv("extinct_natives.csv")
-persist <- read_csv("persist_natives.csv")
+extinct <- read_csv("extinct_natives_master_traits.csv")
+persist <- read_csv("persist_natives_master_traits.csv")
 
 #add a new column for each (extinct or persist)
 extinct['status']='extinct'
 persist['status']='persister'
 
-#rename a column for consistency
-extinct <- dplyr::rename(extinct, growth_habit = growth_form)
+#make a small change here due to me rediscovering Allocasuarina torulosa in the reserve after initially writing this code
+extinct[17, 12] = "persister"
 
 #combine df
 combined <- dplyr::bind_rows(extinct, persist)
+combined<-dplyr::arrange(combined, status)
 
 #tidy up some other column headings etc
 combined <- dplyr::rename(combined, "maximum_height_metres" = max_max_height)
 combined <- dplyr::rename(combined, "dispersal_syndrome" = dispersal)
-combined <- combined %>% arrange(taxon_name)
-combined[203, 3] = "Microtis" 
-combined[203, 4] = "Orchidaceae" 
+combined <- dplyr::rename(combined, "fire_response" = resprouting_capacity)
 
-#AMEND ONE VALUE AFTER RECTIFIED HERBARIUM ID: DROSERA PELTATA IS NOW A PERSISTER, NOT EXTINCT
-combined[94, 12] = "persister"
 
 #write
 write_csv(combined,"data/final_master_list.csv")
 
 
-#SOME MORE ADJUSTMENTS (ADDED 28 JUNE) TO REFLECT SOME CHANGES I MADE TO SPECIES LISTS
-#read edited file in with some deletions and changes
-#change 1 is deletion of Hypericum gramineum (done )
-combined_pre_new <- read_csv("final_master_list_updated.csv")
-
-#change 2 is adding traits for Euchiton involucratus instead of E. japonicus
-library(austraits) 
-austraits <- load_austraits(version = "4.1.0", path = "austraits")
-
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Euchiton involucratus") %>%
-  filter(trait_name == "plant_height") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen") & #preserved specimen is flora data
-           value_type=="maximum") -> heightEI
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Euchiton involucratus") %>%
-  filter(trait_name == "dispersal_syndrome") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> dispersalEI
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Euchiton involucratus") %>%
-  filter(trait_name == "life_history") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> lifeEI
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Euchiton involucratus") %>%
-  filter(trait_name == "photosynthetic_pathway") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> photoEI
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Euchiton involucratus") %>%
-  filter(trait_name == "plant_growth_form") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> growthEI
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Euchiton involucratus") %>%
-  filter(trait_name == "fire_response") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> fireEI
-
-#add these to df
-combined_new0 <- combined_pre_new %>% add_row(taxon_name = "Euchiton involucratus",APC_name = "Euchiton involucratus (G.Forst.) Holub",genus = "Euchiton",family = "Asteraceae",maximum_height_metres = 0.5,dispersal_syndrome = "anemochory",growth_habit = "herb",life_history = "perennial",photosynthetic_pathway = "c3",fire_response = "fire_killed",water_association = "no",status = "persister")
-
-#change 3 is add Melaleuca thymifolia traits
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Melaleuca thymifolia") %>%
-  filter(trait_name == "plant_height") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen") & #preserved specimen is flora data
-           value_type=="maximum") -> heightMT
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Melaleuca thymifolia") %>%
-  filter(trait_name == "dispersal_syndrome") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> dispersalMT
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Melaleuca thymifolia") %>%
-  filter(trait_name == "life_history") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> lifeMT
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Melaleuca thymifolia") %>%
-  filter(trait_name == "photosynthetic_pathway") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> photoMT
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Melaleuca thymifolia") %>%
-  filter(trait_name == "plant_growth_form") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> growthMT
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% "Melaleuca thymifolia") %>%
-  filter(trait_name == "fire_response") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> fireMT
-
-#dispersal was missing, add manually
-
-combined_new <- combined_new0 %>% add_row(taxon_name = "Melaleuca thymifolia",APC_name = "Melaleuca thymifolia Sm.",genus = "Melaleuca",family = "Myrtaceae",maximum_height_metres = 2,dispersal_syndrome = "anemochory",growth_habit = "shrub",life_history = "perennial",photosynthetic_pathway = "c3",fire_response = "resprouting_possible",water_association = "no",status = "persister")
-
-write_csv(combined_new,"data/final_master_list_updated2.csv")
-#this latest csv now becomes Supplementary Table 4 for the paper
-
 #t-test height
 #first check data distribution
-hist(combined_new$maximum_height_metres)
+hist(combined$maximum_height_metres)
+t.test(maximum_height_metres ~ status, data = combined, var.equal = TRUE)
 
 #heavily right skewed, so log transform first
-combined_new <- dplyr::mutate(combined_new, log_height = log(maximum_height_metres))
+combined <- dplyr::mutate(combined, log_height = log(maximum_height_metres))
 
-t.test(log_height ~ status, data = combined_new, var.equal = TRUE)
-
+t.test(log_height ~ status, data = combined, var.equal = TRUE)
 
 
 #chi square tests for traits
-cont_table1 <- table(combined_new$dispersal_syndrome, combined_new$status)
+cont_table1 <- table(combined$dispersal_syndrome, combined$status)
 chisq_result1 <- chisq.test(cont_table1)
 
-cont_table2 <- table(combined_new$growth_habit, combined_new$status)
+cont_table2 <- table(combined$growth_habit, combined$status)
 chisq_result2 <- chisq.test(cont_table2)
 
-cont_table3 <- table(combined_new$life_history, combined_new$status)
+cont_table3 <- table(combined$life_history, combined$status)
 chisq_result3 <- chisq.test(cont_table3)
 
-cont_table4 <- table(combined_new$photosynthetic_pathway, combined_new$status)
+cont_table4 <- table(combined$photosynthetic_pathway, combined$status)
 chisq_result4 <- chisq.test(cont_table4)
 
-cont_table5 <- table(combined_new$fire_response, combined_new$status)
+cont_table5 <- table(combined$fire_response, combined$status)
 chisq_result5 <- chisq.test(cont_table5)
 
-cont_table6 <- table(combined_new$water_association, combined_new$status)
+cont_table6 <- table(combined$water_association, combined$status)
 chisq_result6 <- chisq.test(cont_table6)
 
 #plot these
@@ -152,7 +65,7 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 
 
 p1 <- ggbarstats(
-  data = combined_new,
+  data = combined,
   x = dispersal_syndrome,
   y = status
 ) +
@@ -163,7 +76,7 @@ p1
 extract_stats(p1)
 
 p2<-ggbarstats(
-  data = combined_new,
+  data = combined,
   x = growth_habit,
   y = status
 ) +
@@ -174,7 +87,7 @@ p2
 extract_stats(p2)
 
 p3<-ggbarstats(
-  data = combined_new,
+  data = combined,
   x = life_history,
   y = status
 ) +
@@ -185,7 +98,7 @@ p3
 extract_stats(p3)
 
 p4<-ggbarstats(
-  data = combined_new,
+  data = combined,
   x = photosynthetic_pathway,
   y = status
 ) +
@@ -196,7 +109,7 @@ p4
 extract_stats(p4)
 
 p5<-ggbarstats(
-  data = combined_new,
+  data = combined,
   x = fire_response,
   y = status
 ) +
@@ -207,7 +120,7 @@ p5
 extract_stats(p5)
 
 p6<-ggbarstats(
-  data = combined_new,
+  data = combined,
   x = water_association,
   y = status
 ) +
@@ -217,42 +130,204 @@ p6
 
 extract_stats(p6)
 
+#for dispersal, since one of the categories was 'generic' zoochory, and other categories such as epizoochory are nested inside it, I've created
+#another column, 'dispersal_coarse', where values are recoded simply to abiotic, biotic, mixed. Let's read in that file and run the same analysis
 
-#out of interest, check photosynthetic pathway of new invasive grasses
-library(tidyverse)
-library(dplyr)
+disp2 <- read_csv("final_master_list2.csv")
 
-sl <- read_csv("species_lists.csv")
+p7 <- ggbarstats(
+  data = disp2,
+  x = dispersal_coarse,
+  y = status
+) +
+  labs(caption = NULL) + theme_classic() + scale_fill_manual(values=cbPalette)
 
-#filter to non-natives only
-nonnative <- dplyr::filter(sl, establishment_means=="non-native")
+p7
 
-#separate into two files, Mesaglio and non-Mesaglio
+extract_stats(p7)
 
-mes <- dplyr::filter(nonnative, source=="Mesaglio2022")
-nonmes<- dplyr::filter(nonnative, source!="Mesaglio2022")
+#interested to see what happens now when we just subset things to biotic or abiotic
 
-#filter to species only, and remove duplicates
-mes2 <-dplyr::select(mes, taxon_name)
-nonmes2 <-dplyr::select(nonmes, taxon_name)
+#filter just to biotic
+disp3 <-dplyr::filter(disp2, dispersal_coarse == "biotic")
 
-nonmes3<-dplyr::distinct(nonmes2)
+#also, remove the rows that are only annotated as zoochory, so we are left with the three key specific values (myrmeco, epizoo, endozoo)
+disp3x<-dplyr::filter(disp3, dispersal_syndrome != "zoochory")
 
-#find new invaders
-invade <- dplyr::setdiff(mes2, nonmes3)
 
-#pull out just grasses
-grasses<-dplyr::slice(invade,27,31,32,33,60,66,67,76,87,110)
+p8 <- ggbarstats(
+  data = disp3x,
+  x = dispersal_syndrome,
+  y = status
+) +
+  labs(caption = NULL) + theme_classic() + scale_fill_manual(values=cbPalette)
 
-#append some traits from austraits
+p8
 
-library(austraits) 
-austraits <- load_austraits(version = "4.1.0", path = "austraits")
+extract_stats(p8)
 
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Digitaria didactyla","Ehrharta erecta","Eragrostis pilosa","Eragrostis tenuifolia","Lolium rigidum","Megathyrsus maximus","Melinis repens","Paspalum urvillei","Polypogon viridis","Vulpia muralis","Eragrostis curvula","Cenchrus clandestinus","Cynodon dactylon","Avena barbata","Briza subaristata","Bromus catharticus","Digitaria sanguinalis","Ehrharta longiflora","Lolium multiflorum","Lolium perenne","Setaria parviflora","Setaria pumila","Sorghum halepense")) %>%
-  filter(trait_name == "photosynthetic_pathway") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> grassphoto
+#now just abiotic instead
+disp4 <-dplyr::filter(disp2, dispersal_coarse == "abiotic")
 
-#note that I did the invaders plus other abundant species
+p9 <- ggbarstats(
+  data = disp4,
+  x = dispersal_syndrome,
+  y = status
+) +
+  labs(caption = NULL) + theme_classic() + scale_fill_manual(values=cbPalette)
+
+p9
+
+extract_stats(p9)
+
+
+#wanting to check epizoochory/not binary
+epiz <- read_csv("final_master_list3.csv")
+
+p10 <- ggbarstats(
+  data = epiz,
+  x = epizoo,
+  y = status
+) +
+  labs(caption = NULL) + theme_classic() + scale_fill_manual(values=cbPalette)
+
+p10
+
+extract_stats(p10)
+
+
+#one problem that may exist for some of these traits is that expected counts for some values are very low, 
+#possibly too low for a chi square test to be appropriate (eg growth habit)
+#so I'm just going to run some new code for each category to also get the expected counts for each, then make a decision from there
+
+#growth habit
+M <- as.table(rbind(c(4, 4, 9, 28, 37, 0, 2, 1), c(35, 4, 48, 69, 43, 4, 5, 7)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("tree","subshrub", "shrub", "herb", "graminoid", "fern", "climber_woody", "climber"))
+(Xsq <- chisq.test(M))  # Prints test summary
+Xsq$observed   # observed counts (same as M)
+Xsq$expected   # expected counts under the null
+Xsq$residuals  # Pearson residuals
+Xsq$stdres     # standardized residuals
+
+#several very low expected counts here, from 1.14 to 5.7. Let's just look at the others first before doing anything different
+
+
+#dispersal
+M <- as.table(rbind(c(3, 10, 18, 2, 18, 7, 9, 0, 18), c(9, 33, 39, 2, 29, 32, 21, 1, 49)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("zoochory","myrmecochory", "mixed", "hydrochory", "epizoochory", "endozoochory", "barochory", "ballistic", "anemochory"))
+(Xsq <- chisq.test(M))  # Prints test summary
+Xsq$observed   # observed counts (same as M)
+Xsq$expected   # expected counts under the null
+Xsq$residuals  # Pearson residuals
+Xsq$stdres     # standardized residual
+
+#a few low counts, not as many as for habit
+
+#history
+M <- as.table(rbind(c(1, 82, 0, 2), c(1, 205, 1, 8)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("short_lived_perennial", "perennial", "biennial", "annual"))
+(Xsq <- chisq.test(M))  # Prints test summary
+Xsq$observed   # observed counts (same as M)
+Xsq$expected   # expected counts under the null
+Xsq$residuals  # Pearson residuals
+Xsq$stdres     # standardized residual
+
+#some very low counts
+
+#photosynthesis
+M <- as.table(rbind(c(0, 15, 70), c(2, 16, 197)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("cam", "c4", "c3"))
+(Xsq <- chisq.test(M))  # Prints test summary
+Xsq$observed   # observed counts (same as M)
+Xsq$expected   # expected counts under the null
+Xsq$residuals  # Pearson residuals
+Xsq$stdres     # standardized residual
+
+#low counts for cAM
+
+#fire
+M <- as.table(rbind(c(65, 18), c(182, 33)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("resprouting_possible", "fire_killed"))
+(Xsq <- chisq.test(M))  # Prints test summary
+Xsq$observed   # observed counts (same as M)
+Xsq$expected   # expected counts under the null
+Xsq$residuals  # Pearson residuals
+Xsq$stdres     # standardized residual
+
+#fire is fine
+
+#water
+M <- as.table(rbind(c(19,66), c(20, 195)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("yes", "no"))
+(Xsq <- chisq.test(M))  # Prints test summary
+Xsq$observed   # observed counts (same as M)
+Xsq$expected   # expected counts under the null
+Xsq$residuals  # Pearson residuals
+Xsq$stdres     # standardized residual
+
+#water is fine
+
+#I want to check out dispersal syndrome, but removing the 12 species that we could only code as zoochory
+nozoo<-dplyr::filter(epiz, dispersal_syndrome != "zoochory")
+
+p11 <- ggbarstats(
+  data = epiz,
+  x = dispersal_syndrome,
+  y = status
+) +
+  labs(caption = NULL) + theme_classic() + scale_fill_manual(values=cbPalette)
+
+p11
+
+extract_stats(p11)
+
+M <- as.table(rbind(c(10, 18, 2, 18, 7, 9, 0, 18), c(33, 39, 2, 29, 32, 21, 1, 49)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("myrmecochory", "mixed", "hydrochory", "epizoochory", "endozoochory", "barochory", "ballistic", "anemochory"))
+(Xsq <- chisq.test(M))  # Prints test summary
+Xsq$observed   # observed counts (same as M)
+Xsq$expected   # expected counts under the null
+Xsq$residuals  # Pearson residuals
+Xsq$stdres     # standardized residual
+
+#still some low counts here
+
+#so for the six categorical heights, we have potentially problematic low expected count values for four of them: habit, dispersal, photosynthesis, life history
+#for each of these I'm going to instead run a Fisher exact test to try compensate for the low values, as it's designed for both low values and tables larger than 2x2
+
+library(contingencytables)
+
+#habit
+M <- as.table(rbind(c(4, 4, 9, 28, 37, 0, 2, 1), c(35, 4, 48, 69, 43, 4, 5, 7)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("tree","subshrub", "shrub", "herb", "graminoid", "fern", "climber_woody", "climber"))
+
+FisherFreemanHalton_asymptotic_test_rxc(M)
+
+#dispersal (with zoochory excluded)
+M <- as.table(rbind(c(10, 18, 2, 18, 7, 9, 0, 18), c(33, 39, 2, 29, 32, 21, 1, 49)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("myrmecochory", "mixed", "hydrochory", "epizoochory", "endozoochory", "barochory", "ballistic", "anemochory"))
+
+FisherFreemanHalton_asymptotic_test_rxc(M)
+
+#photosynthesis
+
+M <- as.table(rbind(c(0, 15, 70), c(2, 16, 197)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("cam", "c4", "c3"))
+
+FisherFreemanHalton_asymptotic_test_rxc(M)
+
+#life history
+M <- as.table(rbind(c(1, 82, 0, 2), c(1, 205, 1, 8)))
+dimnames(M) <- list(gender = c("E", "P"),
+                    party = c("short_lived_perennial", "perennial", "biennial", "annual"))
+
+FisherFreemanHalton_asymptotic_test_rxc(M)

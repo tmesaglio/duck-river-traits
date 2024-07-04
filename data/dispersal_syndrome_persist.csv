@@ -15,6 +15,7 @@ Acacia ulicifolia,zoochory
 Acacia ulicifolia,barochory
 Acacia ulicifolia,myrmecochory
 Acacia ulicifolia,zoochory
+Acacia ulicifolia,zoochory
 Acacia ulicifolia,myrmecochory
 Adiantum aethiopicum,barochory
 Adiantum aethiopicum,anemochory
@@ -35,6 +36,8 @@ Anthosachne scabra,epizoochory
 Anthosachne scabra,epizoochory
 Anthosachne scabra,epizoochory myrmecochory
 Anthosachne scabra,anemochory
+Anthosachne scabra,epizoochory
+Anthosachne scabra,epizoochory
 Anthosachne scabra,epizoochory
 Anthosachne scabra,epizoochory
 Anthosachne scabra,epizoochory
@@ -69,6 +72,7 @@ Bothriochloa macra,epizoochory
 Bothriochloa macra,epizoochory
 Bothriochloa macra,epizoochory
 Brachychiton populneus,epizoochory
+Brachyscome triloba,anemochory
 Brachyscome triloba,zoochory
 Brachyscome triloba,zoochory
 Breynia oblongifolia,myrmecochory
@@ -136,7 +140,6 @@ Chrysocephalum apiculatum,anemochory
 Chrysocephalum apiculatum,anemochory
 Chrysocephalum apiculatum,anemochory
 Chrysocephalum apiculatum,anemochory
-Chrysocephalum apiculatum,anemochory
 Clematis aristata,anemochory
 Clematis aristata,anemochory
 Clematis aristata,anemochory
@@ -175,6 +178,8 @@ Crassula sieberiana,anemochory
 Crassula sieberiana,anemochory
 Crassula sieberiana,barochory
 Crassula sieberiana,anemochory
+Cyanthillium cinereum,anemochory
+Cyanthillium cinereum,anemochory
 Cyanthillium cinereum,anemochory
 Cyanthillium cinereum,anemochory
 Cymbopogon refractus,zoochory
@@ -234,6 +239,8 @@ Dichondra repens,undefined
 Dichondra repens,barochory
 Dichondra repens,zoochory
 Dichondra repens,barochory
+Digitaria parviflora,anemochory
+Digitaria parviflora,anemochory
 Dillwynia sieberi,myrmecochory
 Dillwynia sieberi,myrmecochory
 Dillwynia sieberi,myrmecochory
@@ -242,6 +249,16 @@ Diuris maculata,anemochory
 Dodonaea triquetra,myrmecochory
 Dodonaea triquetra,myrmecochory
 Dodonaea triquetra,anemochory
+Drosera peltata,anemochory
+Drosera peltata,anemochory
+Drosera peltata,barochory
+Drosera peltata,barochory
+Drosera peltata,barochory
+Drosera peltata,zoochory
+Drosera peltata,zoochory
+Drosera peltata,barochory
+Drosera peltata,anemochory
+Drosera peltata,anemochory
 Echinopogon caespitosus,zoochory
 Echinopogon caespitosus,barochory
 Echinopogon caespitosus,epizoochory
@@ -272,6 +289,7 @@ Epilobium billardiereanum,anemochory
 Eragrostis brownii,barochory
 Eragrostis brownii,undefined
 Eragrostis brownii,barochory
+Eragrostis brownii,anemochory
 Eragrostis brownii,epizoochory
 Eragrostis brownii,anemochory
 Eragrostis brownii,barochory
@@ -288,6 +306,7 @@ Eucalyptus fibrosa,anemochory
 Eucalyptus fibrosa,barochory
 Eucalyptus globoidea,barochory
 Eucalyptus globoidea,anemochory
+Eucalyptus globoidea,anemochory
 Eucalyptus globoidea,barochory
 Eucalyptus globoidea,barochory
 Eucalyptus longifolia,anemochory
@@ -296,8 +315,14 @@ Eucalyptus moluccana,anemochory
 Eucalyptus moluccana,barochory
 Eucalyptus punctata,anemochory
 Eucalyptus tereticornis,anemochory
-Euchiton sphaericus,anemochory
-Euchiton sphaericus,anemochory
+Euchiton involucratus,anemochory
+Euchiton involucratus,anemochory
+Euchiton involucratus,anemochory
+Euchiton involucratus,anemochory
+Euchiton involucratus,anemochory
+Euchiton involucratus,anemochory
+Euchiton involucratus,anemochory
+Euchiton involucratus,anemochory
 Euchiton sphaericus,anemochory
 Euchiton sphaericus,anemochory
 Euchiton sphaericus,anemochory
@@ -336,6 +361,8 @@ Glossocardia bidens,epizoochory
 Glycine clandestina,barochory
 Glycine clandestina,barochory
 Glycine clandestina,barochory
+Glycine clandestina,barochory
+Glycine clandestina,zoochory
 Glycine clandestina,zoochory
 Glycine clandestina,zoochory
 Glycine clandestina,barochory
@@ -371,7 +398,13 @@ Hibbertia diffusa,zoochory
 Hibbertia pedunculata,zoochory
 Homalanthus populifolius,endozoochory
 Homalanthus populifolius,zoochory
+Hovea linearis,myrmecochory
+Hovea linearis,myrmecochory
+Hovea linearis,myrmecochory
+Hovea linearis,myrmecochory
+Hovea linearis,zoochory
 Hydrocotyle sibthorpioides,undefined
+Hydrocotyle sibthorpioides,zoochory
 Hydrocotyle sibthorpioides,zoochory
 Hydrocotyle sibthorpioides,barochory
 Hypericum gramineum,barochory
@@ -405,6 +438,8 @@ Isolepis cernua,epizoochory
 Isolepis cernua,epizoochory
 Isolepis cernua,epizoochory
 Isolepis cernua,barochory
+Jacksonia scoparia,epizoochory
+Jacksonia scoparia,epizoochory
 Juncus bufonius,barochory
 Juncus bufonius,anemochory
 Juncus bufonius,barochory
@@ -457,6 +492,8 @@ Lepidosperma laterale,myrmecochory
 Lepidosperma laterale,myrmecochory
 Leptospermum polygalifolium,anemochory
 Leptospermum polygalifolium,anemochory
+Leptospermum trinervium,barochory
+Leptospermum trinervium,anemochory
 Leptospermum trinervium,anemochory
 Leucopogon affinis,endozoochory
 Leucopogon affinis,myrmecochory zoochory
@@ -478,7 +515,9 @@ Lissanthe strigosa,endozoochory
 Lobelia anceps,barochory
 Lobelia anceps,zoochory
 Lobelia anceps,zoochory
+Lobelia anceps,zoochory
 Lobelia anceps,barochory
+Lobelia purpurascens,barochory
 Lobelia purpurascens,zoochory
 Lomandra filiformis,myrmecochory
 Lomandra filiformis,myrmecochory
@@ -558,6 +597,9 @@ Oxalis perennans,ballistic
 Oxalis thompsoniae,barochory
 Ozothamnus diosmifolius,anemochory
 Ozothamnus diosmifolius,anemochory
+Ozothamnus diosmifolius,anemochory
+Ozothamnus diosmifolius,anemochory
+Ozothamnus diosmifolius,anemochory
 Pandorea pandorana,anemochory
 Pandorea pandorana,anemochory
 Pandorea pandorana,anemochory
@@ -572,6 +614,7 @@ Panicum simile,epizoochory
 Panicum simile,epizoochory
 Paspalidium criniforme,barochory
 Paspalidium criniforme,epizoochory
+Paspalidium distans,barochory
 Paspalidium distans,barochory
 Paspalidium distans,barochory
 Paspalidium distans,anemochory
@@ -603,6 +646,7 @@ Phragmites australis,anemochory
 Phragmites australis,anemochory
 Phyllanthus gunnii,ballistic
 Phyllanthus gunnii,zoochory
+Phyllanthus gunnii,zoochory
 Pimelea linifolia,myrmecochory
 Pimelea linifolia,myrmecochory
 Pimelea linifolia,myrmecochory
@@ -633,6 +677,8 @@ Polyscias sambucifolia,endozoochory
 Polyscias sambucifolia,zoochory
 Polyscias sambucifolia,epizoochory
 Polyscias sambucifolia,endozoochory
+Pomaderris ferruginea,myrmecochory
+Pomaderris ferruginea,zoochory
 Poranthera microphylla,undefined
 Poranthera microphylla,ballistic myrmecochory
 Poranthera microphylla,ballistic myrmecochory
@@ -716,8 +762,11 @@ Solenogyne bellioides,zoochory
 Stackhousia muricata,zoochory
 Themeda triandra,zoochory
 Themeda triandra,epizoochory
+Themeda triandra,epizoochory
 Themeda triandra,anemochory
 Themeda triandra,epizoochory
+Themeda triandra,epizoochory myrmecochory
+Themeda triandra,anemochory
 Themeda triandra,epizoochory
 Themeda triandra,epizoochory
 Themeda triandra,epizoochory
@@ -735,7 +784,7 @@ Triptilodiscus pygmaeus,anemochory
 Triptilodiscus pygmaeus,anemochory
 Triptilodiscus pygmaeus,anemochory
 Triptilodiscus pygmaeus,anemochory
-Triptilodiscus pygmaeus,anemochory
+Triptilodiscus pygmaeus,epizoochory
 Triptilodiscus pygmaeus,epizoochory
 Triptilodiscus pygmaeus,epizoochory
 Triptilodiscus pygmaeus,anemochory
@@ -749,7 +798,6 @@ Vincetoxicum barbatum,anemochory
 Vincetoxicum barbatum,anemochory
 Vincetoxicum barbatum,anemochory
 Vincetoxicum barbatum,anemochory
-Vittadinia cuneata,anemochory
 Vittadinia cuneata,anemochory
 Vittadinia cuneata,anemochory
 Vittadinia cuneata,anemochory

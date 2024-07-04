@@ -1,43 +1,27 @@
+#read in data file of 'extinct' native species from Mesaglio 2023
 
 library(tidyverse)
 library(dplyr)
 
-sl <- read_csv("species_lists.csv")
+sl <- read_csv("new_traits_extinct.csv")
 
-#filter to natives only
-native <- dplyr::filter(sl, establishment_means=="native")
-
-#separate into two files, Mesaglio and non-Mesaglio
-
-mes <- dplyr::filter(native, source=="Mesaglio2022")
-nonmes<- dplyr::filter(native, source!="Mesaglio2022")
-
-#filter to species only, and remove duplicates
-mes2 <-dplyr::select(mes, taxon_name)
-nonmes2 <-dplyr::select(nonmes, taxon_name)
-
-nonmes3<-dplyr::distinct(nonmes2)
-
-#find the differences, ie native extinctions
-extinct <-dplyr::setdiff(nonmes3, mes2)
-
-#I ran this list through the APC to get author info + family
-
-APC<- read_csv("APC_metadata.csv")
 
 
 #append some traits from austraits
 
 
 #install austraits
-remotes::install_github("traitecoevo/austraits", dependencies = TRUE, upgrade = "ask")
+remotes::install_github("traitecoevo/austraits", dependencies = TRUE, upgrade = "ask", force = TRUE)
 
 library(austraits) 
-austraits <- load_austraits(version = "4.1.0", path = "austraits")
+austraits::load_austraits(version = "5.0.0")
+
+#for now, line 17 isn't working for me for some reason (it's working for other users), so here's a workaround
+#download the RDS file from https://zenodo.org/records/10156222, rename it to 'austraits', then manually click on it in file explorer to open it in Rstudio
 
 #get traits
 
-spvector <- APC$taxon_name
+spvector <- sl$taxon_name
 
 
 #first is maximum plant height
@@ -46,7 +30,7 @@ spvector <- APC$taxon_name
   filter(taxon_name %in% spvector) %>%
   filter(trait_name == "plant_height") %>%
   filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen") & #preserved specimen is flora data
+           basis_of_record %in% c("field","literature","literature field","preserved_specimen") & #preserved specimen is flora data
            value_type=="maximum") -> trait1
 
 
@@ -64,7 +48,7 @@ check<-check %>%
     taxon_name = trait1.taxon_name
   )
 
-APC_sp <-dplyr::select(APC, taxon_name)
+APC_sp <-dplyr::select(sl, taxon_name)
 
 y <- setdiff(APC_sp, check) 
 
@@ -85,20 +69,23 @@ master1[5, 2] = 0.5
   filter(taxon_name %in% spvector) %>%
   filter(trait_name == "dispersal_syndrome") %>%
   filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> trait2
+           basis_of_record %in% c("field","literature","literature field","preserved_specimen"))-> trait2
+
+#remove Draper study (too many species scored from broad family/genus values)
+trait2x<-dplyr::filter(trait2, dataset_id != "Draper_2023")
 
 
 #dispersal syndrome by species 
-trait2 %>%         
+trait2x %>%         
   group_by(taxon_name) %>%
   summarize(dispersal=value) ->trait2a
 
 #see which species are in Austraits, but have no data for this trait
-check2<-data.frame(trait2$taxon_name)
+check2<-data.frame(trait2x$taxon_name)
 
 check2<-check2 %>% 
   rename(
-    taxon_name = trait2.taxon_name
+    taxon_name = trait2x.taxon_name
   )
 
 y2 <- setdiff(APC_sp, check2) 
@@ -110,70 +97,14 @@ write_csv(trait2a,"data/dispersal_syndrome.csv")
 
 #for some of these, there is no online info. So my method is to retrieve the dispersal syndrome for all other NSW species in the genus to compare with
 
-#dysphania
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Dysphania ambrosioides","Dysphania carinata","Dysphania cristata","Dysphania glomulifera","Dysphania kalpari","Dysphania melanocarpa","Dysphania multifida","Dysphania plantaginella","Dysphania platycarpa","Dysphania pumilio","Dysphania rhadinostachya","Dysphania simulans","Dysphania truncata")) %>%
-  filter(trait_name == "dispersal_syndrome") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> dysphania
+#to do this, we extract all values for the trait, and then can search for the relevant genera in the dataframe
+disp1 <- extract_trait(austraits, "dispersal_syndrome")
+disp2<-(disp1$traits)
 
-#cyperus
-
-cyperus_names <- read_csv("cyperus_names.csv")
-cypvector <- cyperus_names$taxon_name
-
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% cypvector) %>%
-  filter(trait_name == "dispersal_syndrome") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> cyperus
-
-#isotoma
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Isotoma anethifolia","Isotoma axillaris","Isotoma petraea","Isotoma tridens")) %>%
-  filter(trait_name == "dispersal_syndrome") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> isotoma
-
-#juncus
-juncus_names <- read_csv("juncus_names.csv")
-junvector <- juncus_names$taxon_name
-
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% junvector) %>%
-  filter(trait_name == "dispersal_syndrome") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> juncus
-
-#lomandra
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Lomandra bracteata","Lomandra brevis","Lomandra collina","Lomandra confertifolia","Lomandra cylindrica","Lomandra effusa","Lomandra elongata","Lomandra filiformis","Lomandra glauca","Lomandra gracilis","Lomandra hystrix","Lomandra laxa","Lomandra leucocephala","Lomandra longifolia","Lomandra micrantha","Lomandra montana","Lomandra multiflora","Lomandra obliqua","Lomandra patens","Lomandra spicata")) %>%
-  filter(trait_name == "dispersal_syndrome") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> lomandra
-
-#tricoryne
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Tricoryne elatior","Tricoryne anceps")) %>%
-  filter(trait_name == "dispersal_syndrome") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> tricoryne
-
-#there are also 4 species listed as zoochory, but since we have 3 other syndromes that are nested in that (epi, endo, myrmechory), I will get more specific for them
-
-#need to do a check for brachyscome
-brachyscome_names <- read_csv("brachyscome_names.csv")
-bravector <- brachyscome_names$taxon_name
-
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% bravector) %>%
-  filter(trait_name == "dispersal_syndrome") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> brachyscome
 
 #now we read in that edited file and append
 
-dispersalv2 <- read_csv("dispersal_syndrome_v2.csv")
+dispersalv2 <- read_csv("dispersal_syndrome_updated.csv")
 
 master2 <-dplyr::left_join(master1, dispersalv2, by = "taxon_name")
 
@@ -183,20 +114,22 @@ master2 <-dplyr::left_join(master1, dispersalv2, by = "taxon_name")
   filter(taxon_name %in% spvector) %>%
   filter(trait_name == "plant_growth_form") %>%
   filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> trait3
+           basis_of_record %in% c("field","literature","literature field","preserved_specimen"))-> trait3
 
+#this trait is a fully curated one (Wenk_2022), so we'll filter to that
+trait3x<-dplyr::filter(trait3, dataset_id=="Wenk_2022")
 
 #habit by species 
-trait3 %>%         
+trait3x %>%         
   group_by(taxon_name) %>%
   summarize(growth_habit=value) ->trait3a
 
 #see which species are in Austraits, but have no data for this trait 
-check3<-data.frame(trait3$taxon_name)
+check3<-data.frame(trait3x$taxon_name)
 
 check3<-check3 %>% 
   rename(
-    taxon_name = trait3.taxon_name
+    taxon_name = trait3x.taxon_name
   )
 
 y3 <- setdiff(APC_sp, check3)
@@ -204,8 +137,8 @@ y3 <- setdiff(APC_sp, check3)
 #first though, write up the csv for this trait so I can manually collapse rows (multiple values for same species)
 write_csv(trait3a,"data/growth_form.csv")
 
-#also tack on habit for single missing species here (Microtis), then read back in and append
-formv2 <- read_csv("growth_form_v2.csv")
+#also tack on habit for two missing species here, then read back in and append
+formv2 <- read_csv("growth_form_updated.csv")
 
 master3 <-dplyr::left_join(master2, formv2, by = "taxon_name")
 
@@ -215,19 +148,23 @@ master3 <-dplyr::left_join(master2, formv2, by = "taxon_name")
   filter(taxon_name %in% spvector) %>%
   filter(trait_name == "life_history") %>%
   filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> trait4
+           basis_of_record %in% c("field","literature","literature field","preserved_specimen"))-> trait4
+
+#this trait is a fully curated one (Wenk_2023), so we'll filter to that
+trait4x<-dplyr::filter(trait4, dataset_id=="Wenk_2023")
+
 
 #life history by species 
-trait4 %>%         
+trait4x %>%         
   group_by(taxon_name) %>%
   summarize(life_history=value) ->trait4a
 
 #see which species are in Austraits, but have no data for this trait 
-check4<-data.frame(trait4$taxon_name)
+check4<-data.frame(trait4x$taxon_name)
 
 check4<-check4 %>% 
   rename(
-    taxon_name = trait4.taxon_name
+    taxon_name = trait4x.taxon_name
   )
 
 y4 <- setdiff(APC_sp, check4)
@@ -235,16 +172,9 @@ y4 <- setdiff(APC_sp, check4)
 #first though, write up the csv for this trait so I can manually collapse rows (multiple values for same species)
 write_csv(trait4a,"data/life_history.csv")
 
-#just checking if Microtis should be perennial or short lived perennial
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Microtis rara","Microtis oblonga","Microtis parviflora","Microtis arenaria","Microtis unifolia","Microtis angusii")) %>%
-  filter(trait_name == "life_history") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> microtis
 
-
-#also tack on value for single missing species here (Microtis), then read back in and append
-historyv2 <- read_csv("life_history_v2.csv")
+#also tack on value for two missing species here, then read back in and append
+historyv2 <- read_csv("life_history_updated.csv")
 
 master4 <-dplyr::left_join(master3, historyv2, by = "taxon_name")
 
@@ -253,7 +183,7 @@ master4 <-dplyr::left_join(master3, historyv2, by = "taxon_name")
   filter(taxon_name %in% spvector) %>%
   filter(trait_name == "photosynthetic_pathway") %>%
   filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> trait5
+           basis_of_record %in% c("field","literature","literature field","preserved_specimen"))-> trait5
 
 #photosynthesis by species 
 trait5 %>%         
@@ -273,66 +203,27 @@ y5 <- setdiff(APC_sp, check5)
 #first though, write up the csv for this trait so I can manually collapse rows (multiple values for same species)
 write_csv(trait5a,"data/photosynthesis.csv")
 
-#add missing species in there too, then load in
-#first check some of said missing species
+#for missing species with info not found in literature, repeat step as above for dispersal (check other genera)
+phot1 <- extract_trait(austraits, "photosynthetic_pathway")
+phot2<-(phot1$traits)
 
-#dysphania
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Dysphania ambrosioides","Dysphania carinata","Dysphania cristata","Dysphania glomulifera","Dysphania kalpari","Dysphania melanocarpa","Dysphania multifida","Dysphania plantaginella","Dysphania platycarpa","Dysphania pumilio","Dysphania rhadinostachya","Dysphania simulans","Dysphania truncata")) %>%
-  filter(trait_name == "photosynthetic_pathway") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> dysphaniaphoto
+#now load in updated file
 
-#isotoma
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Isotoma anethifolia","Isotoma axillaris","Isotoma petraea","Isotoma tridens")) %>%
-  filter(trait_name == "photosynthetic_pathway") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> isotomaphoto
-
-#juncus
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% junvector) %>%
-  filter(trait_name == "photosynthetic_pathway") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> juncusphoto
-
-#lomandra
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Lomandra bracteata","Lomandra brevis","Lomandra collina","Lomandra confertifolia","Lomandra cylindrica","Lomandra effusa","Lomandra elongata","Lomandra filiformis","Lomandra glauca","Lomandra gracilis","Lomandra hystrix","Lomandra laxa","Lomandra leucocephala","Lomandra longifolia","Lomandra micrantha","Lomandra montana","Lomandra multiflora","Lomandra obliqua","Lomandra patens","Lomandra spicata")) %>%
-  filter(trait_name == "photosynthetic_pathway") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> lomandraphoto
-
-#tricoryne
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Tricoryne elatior","Tricoryne anceps")) %>%
-  filter(trait_name == "photosynthetic_pathway") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> tricorynephoto
-
-#microtis
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Microtis rara","Microtis oblonga","Microtis parviflora","Microtis arenaria","Microtis unifolia","Microtis angusii")) %>%
-  filter(trait_name == "photosynthetic_pathway") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> microtisphoto
-
-photov2 <- read_csv("photosynthesis_v2.csv")
+photov2 <- read_csv("photosynthesis_updated.csv")
 
 master5 <-dplyr::left_join(master4, photov2, by = "taxon_name")
 
 #fire response
 (austraits %>% join_all)$traits %>%
   filter(taxon_name %in% spvector) %>%
-  filter(trait_name == "fire_response") %>%
+  filter(trait_name == "resprouting_capacity") %>%
   filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> trait6
+           basis_of_record %in% c("field","literature","literature field","preserved_specimen"))-> trait6
 
 #fire by species 
 trait6 %>%         
   group_by(taxon_name) %>%
-  summarize(fire_response=value) ->trait6a
+  summarize(resprouting_capacity=value) ->trait6a
 
 #see which species are in Austraits, but have no data for this trait 
 check6<-data.frame(trait6$taxon_name)
@@ -347,57 +238,12 @@ y6 <- setdiff(APC_sp, check6)
 #first though, write up the csv for this trait so I can manually collapse rows (multiple values for same species)
 write_csv(trait6a,"data/fire.csv")
 
-#cyperus
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% cypvector) %>%
-  filter(trait_name == "fire_response") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> cyperusfire
+#call to check genera for some missing species
+fir1 <- extract_trait(austraits, "resprouting_capacity")
+fir2<-(fir1$traits)
 
-#dysphania
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Dysphania ambrosioides","Dysphania carinata","Dysphania cristata","Dysphania glomulifera","Dysphania kalpari","Dysphania melanocarpa","Dysphania multifida","Dysphania plantaginella","Dysphania platycarpa","Dysphania pumilio","Dysphania rhadinostachya","Dysphania simulans","Dysphania truncata")) %>%
-  filter(trait_name == "fire_response") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> dysphaniafire
-
-#echinochloa
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Echinochloa colona","Echinochloa crus-galli","Echinochloa crus-pavonis","Echinochloa esculenta","Echinochloa frumentacea","Echinochloa inundata","Echinochloa lacunaria","Echinochloa microstachya","Echinochloa oryzoides","Echinochloa polystachya","Echinochloa pyramidalis","Echinochloa turneriana")) %>%
-  filter(trait_name == "fire_response") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> echinochloafire
-
-#isotoma
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Isotoma anethifolia","Isotoma axillaris","Isotoma petraea","Isotoma tridens")) %>%
-  filter(trait_name == "fire_response") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> isotomafire
-
-#juncus
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% junvector) %>%
-  filter(trait_name == "fire_response") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> juncusfire
-
-#microtis
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Microtis rara","Microtis oblonga","Microtis parviflora","Microtis arenaria","Microtis unifolia","Microtis angusii")) %>%
-  filter(trait_name == "fire_response") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> microtisfire
-
-#paspalum
-(austraits %>% join_all)$traits %>%
-  filter(taxon_name %in% c("Paspalum ciliatifolium","Paspalum conjugatum","Paspalum dilatatum","Paspalum distichum","Paspalum longifolium","Paspalum mandiocanum","Paspalum nicorae","Paspalum notatum","Paspalum orbiculare","Paspalum paniculatum","Paspalum quadrifarium","Paspalum regnellii","Paspalum scrobiculatum","Paspalum urvillei")) %>%
-  filter(trait_name == "fire_response") %>%
-  filter(life_stage=="adult" & 
-           basis_of_record %in% c("field","literature","literature, field","preserved_specimen"))-> paspalumfire
-
-
-firev2 <- read_csv("fire_v2.csv")
+#load edited file
+firev2 <- read_csv("fire_updated.csv")
 
 master6 <-dplyr::left_join(master5, firev2, by = "taxon_name")
 
@@ -410,8 +256,10 @@ master7 <-dplyr::left_join(master6, water, by = "taxon_name")
 
 #now finally reappend the APC columns (family, genus, authors)
 
-master8<-dplyr::left_join(master7, APC, by = "taxon_name")
+master8<-dplyr::left_join(master7, sl, by = "taxon_name")
 
 master9<-master8[,c(1,9,10,11,2,3,4,5,6,7,8)]
 
-write_csv(master9,"data/extinct_natives.csv")
+write_csv(master9,"data/extinct_natives_master_traits.csv")
+
+#I alphabetise this file in excel after 

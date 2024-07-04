@@ -1,0 +1,87 @@
+taxon_name,Family,Genus,Species with author,max_max_height,dispersal,growth_habit,life_history,photosynthetic_pathway,resprouting_capacity,water_association
+Parsonsia straminea,Apocynaceae,Parsonsia,Parsonsia straminea (R.Br.) F.Muell.,30,anemochory,climber_woody,perennial,c3,resprouting_possible,no
+Arthropodium minus,Asparagaceae,Arthropodium,Arthropodium minus R.Br.,0.5,barochory,herb,perennial,c3,resprouting_possible,no
+Arthropodium strictum,Asparagaceae,Arthropodium,Arthropodium strictum R.Br.,1.2,barochory,herb,perennial,c3,resprouting_possible,no
+Lomandra fluviatilis,Asparagaceae,Lomandra,Lomandra fluviatilis (R.Br.) A.T.Lee,0.75,mixed,herb,perennial,c3,resprouting_possible,yes
+Brachyscome graminea,Asteraceae,Brachyscome,Brachyscome graminea (Labill.) F.Muell.,0.7,zoochory,herb,perennial,c3,resprouting_possible,no
+Coronidium scorpioides,Asteraceae,Coronidium,Coronidium scorpioides (Labill.) Paul G.Wilson,0.901,anemochory,herb,perennial,c3,resprouting_possible,no
+Picris angustifolia,Asteraceae,Picris,Picris angustifolia DC.,1.4,anemochory,herb,perennial,c3,fire_killed,no
+Senecio bathurstianus,Asteraceae,Senecio,Senecio bathurstianus (DC.) Sch.Bip.,1.5,anemochory,herb,annual,c3,fire_killed,no
+Senecio linearifolius,Asteraceae,Senecio,Senecio linearifolius A.Rich.,2,anemochory,subshrub,perennial,c3,fire_killed,no
+Senecio quadridentatus,Asteraceae,Senecio,Senecio quadridentatus Labill.,1.5,anemochory,herb,perennial,c3,fire_killed,no
+Sphaeromorphaea australis,Asteraceae,Sphaeromorphaea,Sphaeromorphaea australis (Less.) Kitam.,0.3,epizoochory,herb,perennial,c3,fire_killed,no
+Vittadinia muelleri,Asteraceae,Vittadinia,Vittadinia muelleri N.T.Burb.,0.3,anemochory,herb,perennial,c3,resprouting_possible,no
+Cardamine lilacina,Brassicaceae,Cardamine,Cardamine lilacina Hook.,0.5,epizoochory,herb,perennial,c3,resprouting_possible,no
+Isotoma fluviatilis,Campanulaceae,Isotoma,Isotoma fluviatilis (R.Br.) F.Muell. ex Benth.,0.1,zoochory,herb,perennial,c3,resprouting_possible,yes
+Wahlenbergia capillaris,Campanulaceae,Wahlenbergia,Wahlenbergia capillaris (G.Lodd.) G.Don,0.75,mixed,herb,perennial,c3,resprouting_possible,no
+Wahlenbergia stricta,Campanulaceae,Wahlenbergia,Wahlenbergia stricta (R.Br.) Sweet,0.9,barochory,herb,perennial,c3,resprouting_possible,no
+Allocasuarina torulosa,Casuarinaceae,Allocasuarina,Allocasuarina torulosa (Aiton) L.A.S.Johnson,30,anemochory,tree,perennial,c3,resprouting_possible,no
+Dysphania littoralis,Chenopodiaceae,Dysphania,Dysphania littoralis R.Br.,0.1,mixed,herb,short_lived_perennial,c3,fire_killed,no
+Einadia nutans,Chenopodiaceae,Einadia,Einadia nutans (R.Br.) A.J.Scott,1,endozoochory,herb,perennial,c3,fire_killed,no
+Maireana microphylla,Chenopodiaceae,Maireana,Maireana microphylla (Moq.) Paul G.Wilson,1,anemochory,shrub,perennial,c4,fire_killed,no
+Bolboschoenus caldwellii,Cyperaceae,Bolboschoenus,Bolboschoenus caldwellii (V.J.Cook) Soják,1.2,endozoochory,graminoid,perennial,c3,resprouting_possible,yes
+Cyperus mirus,Cyperaceae,Cyperus,Cyperus mirus C.B.Clarke,0.55,hydrochory,graminoid,perennial,c3,NA,yes
+Cyperus polystachyos,Cyperaceae,Cyperus,Cyperus polystachyos Rottb.,0.6,hydrochory,graminoid,perennial,c4,resprouting_possible,yes
+Eleocharis acuta,Cyperaceae,Eleocharis,Eleocharis acuta R.Br.,0.9,mixed,graminoid,perennial,c3,resprouting_possible,yes
+Lepidosperma lineare,Cyperaceae,Lepidosperma,Lepidosperma lineare R.Br.,0.6,myrmecochory,graminoid,perennial,c3,resprouting_possible,no
+Astroloma humifusum,Ericaceae,Astroloma,Astroloma humifusum (Cav.) R.Br.,0.7,endozoochory,shrub,perennial,c3,resprouting_possible,no
+Euphorbia drummondii,Euphorbiaceae,Euphorbia,Euphorbia drummondii Boiss.,0.3,barochory,herb,perennial,c4,fire_killed,no
+Acacia stricta,Fabaceae,Acacia,Acacia stricta (Andrews) Willd.,6,myrmecochory,tree,perennial,c3,resprouting_possible,no
+Gompholobium glabratum,Fabaceae,Gompholobium,Gompholobium glabratum DC.,0.4,myrmecochory,shrub,perennial,c3,resprouting_possible,no
+Pultenaea retusa,Fabaceae,Pultenaea,Pultenaea retusa Sm.,1,myrmecochory,shrub,perennial,c3,fire_killed,no
+Goodenia bellidifolia,Goodeniaceae,Goodenia,Goodenia bellidifolia Sm.,0.6,myrmecochory,herb,perennial,c3,resprouting_possible,no
+Goodenia ovata,Goodeniaceae,Goodenia,Goodenia ovata Sm.,2.5,myrmecochory,shrub,perennial,c3,resprouting_possible,no
+Gonocarpus tetragynus,Haloragaceae,Gonocarpus,Gonocarpus tetragynus Labill.,0.4,barochory,subshrub,perennial,c3,resprouting_possible,no
+Tricoryne elatior,Hemerocallidaceae,Tricoryne,Tricoryne elatior R.Br.,0.7,barochory,herb,perennial,c3,resprouting_possible,no
+Tricoryne simplex,Hemerocallidaceae,Tricoryne,Tricoryne simplex R.Br.,0.3,mixed,herb,perennial,c3,resprouting_possible,no
+Juncus continuus,Juncaceae,Juncus,Juncus continuus L.A.S.Johnson,1.15,epizoochory,graminoid,perennial,c3,resprouting_possible,yes
+Juncus homalocaulis,Juncaceae,Juncus,Juncus homalocaulis F.Muell. ex Benth.,0.4,mixed,graminoid,perennial,c3,resprouting_possible,no
+Juncus mollis,Juncaceae,Juncus,Juncus mollis L.A.S.Johnson,1.45,mixed,graminoid,perennial,c3,resprouting_possible,yes
+Juncus polyanthemus,Juncaceae,Juncus,Juncus polyanthemus Buchenau,1.5,epizoochory,graminoid,perennial,c3,resprouting_possible,yes
+Juncus procerus,Juncaceae,Juncus,Juncus procerus E.Mey.,2.5,mixed,graminoid,perennial,c3,resprouting_possible,yes
+Juncus remotiflorus,Juncaceae,Juncus,Juncus remotiflorus L.A.S.Johnson,0.7,epizoochory,graminoid,perennial,c3,resprouting_possible,yes
+Juncus vaginatus,Juncaceae,Juncus,Juncus vaginatus R.Br.,1.7,mixed,graminoid,perennial,c3,resprouting_possible,yes
+Cassytha glabella,Lauraceae,Cassytha,Cassytha glabella R.Br.,1,endozoochory,climber,perennial,c3,fire_killed,no
+Mitrasacme polymorpha,Loganiaceae,Mitrasacme,Mitrasacme polymorpha R.Br.,0.3,mixed,herb,perennial,c3,resprouting_possible,no
+Commersonia dasyphylla,Malvaceae,Commersonia,Commersonia dasyphylla Andrews,4,zoochory,shrub,perennial,c3,fire_killed,no
+Eucalyptus sideroxylon,Myrtaceae,Eucalyptus,Eucalyptus sideroxylon A.Cunn. ex Woolls,35,anemochory,tree,perennial,c3,resprouting_possible,no
+Syncarpia glomulifera,Myrtaceae,Syncarpia,Syncarpia glomulifera (Sm.) Nied.,25,anemochory,tree,perennial,c3,resprouting_possible,no
+Diuris sulphurea,Orchidaceae,Diuris,Diuris sulphurea R.Br.,0.6,anemochory,herb,perennial,c3,resprouting_possible,no
+Microtis,Orchidaceae,Microtis,Microtis,0.6,anemochory,herb,perennial,c3,resprouting_possible,no
+Thelymitra pauciflora,Orchidaceae,Thelymitra,Thelymitra pauciflora R.Br.,0.5,anemochory,herb,perennial,c3,resprouting_possible,no
+Billardiera scandens,Pittosporaceae,Billardiera,Billardiera scandens Sm.,3,endozoochory,climber_woody,perennial,c3,resprouting_possible,no
+Plantago varia,Plantaginaceae,Plantago,Plantago varia R.Br.,0.2,barochory,herb,perennial,c3,resprouting_possible,no
+Veronica calycina,Plantaginaceae,Veronica,Veronica calycina R.Br.,0.5,barochory,herb,perennial,c3,resprouting_possible,no
+Amphibromus neesii,Poaceae,Amphibromus,Amphibromus neesii Steud.,1.5,epizoochory,graminoid,perennial,c3,fire_killed,yes
+Aristida ramosa,Poaceae,Aristida,Aristida ramosa R.Br.,1.2,epizoochory,graminoid,perennial,c4,resprouting_possible,no
+Austrostipa pubescens,Poaceae,Austrostipa,Austrostipa pubescens (R.Br.) S.W.L.Jacobs & J.Everett,1.5,epizoochory,graminoid,perennial,c3,resprouting_possible,no
+Austrostipa scabra,Poaceae,Austrostipa,Austrostipa scabra (Lindl.) S.W.L.Jacobs & J.Everett,0.95,epizoochory,graminoid,perennial,c3,resprouting_possible,no
+Austrostipa setacea,Poaceae,Austrostipa,Austrostipa setacea (R.Br.) S.W.L.Jacobs & J.Everett,0.8,epizoochory,graminoid,perennial,c3,resprouting_possible,no
+Bothriochloa decipiens,Poaceae,Bothriochloa,Bothriochloa decipiens (Hack.) C.E.Hubb.,2,mixed,graminoid,perennial,c4,resprouting_possible,no
+Deyeuxia quadriseta,Poaceae,Deyeuxia,Deyeuxia quadriseta (Labill.) Benth.,1.5,epizoochory,graminoid,perennial,c3,resprouting_possible,yes
+Dichelachne rara,Poaceae,Dichelachne,Dichelachne rara (R.Br.) Vickery,1.3,epizoochory,graminoid,perennial,c3,resprouting_possible,no
+Digitaria ramularis,Poaceae,Digitaria,Digitaria ramularis (Trin.) Henrard,1,anemochory,graminoid,perennial,c4,resprouting_possible,no
+Echinochloa telmatophila,Poaceae,Echinochloa,Echinochloa telmatophila P.W.Michael & Vickery,2,anemochory,graminoid,annual,c4,fire_killed,yes
+Eragrostis benthamii,Poaceae,Eragrostis,Eragrostis benthamii Mattei,0.6,mixed,graminoid,perennial,c4,NA,no
+Eragrostis elongata,Poaceae,Eragrostis,Eragrostis elongata (Willd.) J.Jacq.,0.9,mixed,graminoid,perennial,c4,fire_killed,no
+Eragrostis parviflora,Poaceae,Eragrostis,Eragrostis parviflora (R.Br.) Trin.,1.35,barochory,graminoid,perennial,c4,fire_killed,no
+Lachnagrostis aemula,Poaceae,Lachnagrostis,Lachnagrostis aemula (R.Br.) Trin.,0.8,mixed,graminoid,perennial,c3,resprouting_possible,no
+Panicum effusum,Poaceae,Panicum,Panicum effusum R.Br.,1,anemochory,graminoid,perennial,c4,resprouting_possible,no
+Paspalidium aversum,Poaceae,Paspalidium,Paspalidium aversum Vickery,0.9,mixed,graminoid,perennial,c4,resprouting_possible,yes
+Paspalum vaginatum,Poaceae,Paspalum,Paspalum vaginatum Sw.,0.6,epizoochory,graminoid,perennial,c4,resprouting_possible,yes
+Poa affinis,Poaceae,Poa,Poa affinis R.Br.,1.2,epizoochory,graminoid,perennial,c3,resprouting_possible,no
+Poa labillardierei,Poaceae,Poa,Poa labillardierei Steud.,1.3,epizoochory,graminoid,perennial,c3,resprouting_possible,yes
+Rytidosperma bipartitum,Poaceae,Rytidosperma,Rytidosperma bipartitum (Link) A.M.Humphreys & H.P.Linder,0.8,epizoochory,graminoid,perennial,c3,resprouting_possible,no
+Rytidosperma longifolium,Poaceae,Rytidosperma,Rytidosperma longifolium (R.Br.) Connor & Edgar,0.8,epizoochory,graminoid,perennial,c3,resprouting_possible,no
+Rytidosperma racemosum,Poaceae,Rytidosperma,Rytidosperma racemosum (R.Br.) Connor & Edgar,0.75,epizoochory,graminoid,perennial,c3,resprouting_possible,no
+Sporobolus elongatus,Poaceae,Sporobolus,Sporobolus elongatus R.Br.,1,mixed,graminoid,perennial,c4,resprouting_possible,no
+Urochloa foliosa,Poaceae,Urochloa,Urochloa foliosa (R.Br.) R.D.Webster,0.9,anemochory,graminoid,perennial,c4,fire_killed,no
+Polygala japonica,Polygalaceae,Polygala,Polygala japonica Houtt.,0.25,mixed,subshrub,perennial,c3,resprouting_possible,no
+Ranunculus lappaceus,Ranunculaceae,Ranunculus,Ranunculus lappaceus Sm.,1.7,mixed,herb,perennial,c3,resprouting_possible,no
+Pomaderris lanigera,Rhamnaceae,Pomaderris,Pomaderris lanigera (Andrews) Sims,5,myrmecochory,tree,perennial,c3,resprouting_possible,no
+Opercularia aspera,Rubiaceae,Opercularia,Opercularia aspera Gaertn.,2,myrmecochory,subshrub,perennial,c3,resprouting_possible,no
+Asterolasia correifolia,Rutaceae,Asterolasia,Asterolasia correifolia (A.Juss.) Benth.,2.5,myrmecochory,shrub,perennial,c3,fire_killed,no
+Exocarpos strictus,Santalaceae,Exocarpos,Exocarpos strictus R.Br.,6,endozoochory,shrub,perennial,c3,resprouting_possible,no
+Omphacomeria acerba,Santalaceae,Omphacomeria,Omphacomeria acerba (R.Br.) A.DC.,1.5,endozoochory,shrub,perennial,c3,resprouting_possible,no
+Typha domingensis,Typhaceae,Typha,Typha domingensis Pers.,4,anemochory,graminoid,perennial,c3,resprouting_possible,yes
+Viola betonicifolia,Violaceae,Viola,Viola betonicifolia Sm.,0.2,myrmecochory,herb,perennial,c3,resprouting_possible,no

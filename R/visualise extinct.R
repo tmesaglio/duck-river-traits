@@ -3,7 +3,7 @@ library(tidyverse)
 library(dplyr)
 library(ggplot2)
 
-extinct <- read_csv("data/extinct_natives.csv")
+extinct <- read_csv("data/extinct_natives_master_traits.csv")
 
 boxplot(extinct$max_max_height, horizontal = FALSE)
 

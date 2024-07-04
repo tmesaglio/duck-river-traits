@@ -22,10 +22,8 @@ Cyperus mirus,yes
 Cyperus polystachyos,yes
 Deyeuxia quadriseta,yes
 Dichelachne rara,no
-Digitaria parviflora,no
 Digitaria ramularis,no
 Diuris sulphurea,no
-Drosera peltata,yes
 Dysphania littoralis,no
 Echinochloa telmatophila,yes
 Einadia nutans,no
@@ -34,17 +32,13 @@ Eragrostis benthamii,no
 Eragrostis elongata,no
 Eragrostis parviflora,no
 Eucalyptus sideroxylon,no
-Euchiton japonicus,no
 Euphorbia drummondii,no
 Exocarpos strictus,no
 Gompholobium glabratum,no
 Gonocarpus tetragynus,no
 Goodenia bellidifolia,no
 Goodenia ovata,no
-Hovea longifolia,no
-Hypericum japonicum,yes
 Isotoma fluviatilis,yes
-Jacksonia scoparia,no
 Juncus continuus,yes
 Juncus homalocaulis,no
 Juncus mollis,yes
@@ -56,7 +50,7 @@ Lachnagrostis aemula,no
 Lepidosperma lineare,no
 Lomandra fluviatilis,yes
 Maireana microphylla,no
-Microtis sp.,no
+Microtis,no
 Mitrasacme polymorpha,no
 Omphacomeria acerba,no
 Opercularia aspera,no
@@ -69,7 +63,6 @@ Plantago varia,no
 Poa affinis,no
 Poa labillardierei,yes
 Polygala japonica,no
-Pomaderris ferruginea,no
 Pomaderris lanigera,no
 Pultenaea retusa,no
 Ranunculus lappaceus,no
