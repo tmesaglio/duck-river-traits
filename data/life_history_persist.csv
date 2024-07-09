@@ -8,13 +8,13 @@ Acacia parramattensis,perennial
 Acacia pubescens,perennial
 Acacia ulicifolia,perennial
 Adiantum aethiopicum,perennial
+Allocasuarina torulosa,perennial
 Alternanthera denticulata,annual perennial short_lived_perennial
 Amyema gaudichaudii,perennial
 Amyema miquelii,perennial
 Angophora floribunda,perennial
 Anthosachne scabra,perennial
 Aristida vagans,perennial
-Arthropodium sp. South-east Highlands (N.G.Walsh 811),perennial
 Asperula conferta,perennial
 Austrostipa rudis,perennial
 Boronia polygalifolia,perennial
@@ -89,7 +89,7 @@ Eucalyptus moluccana,perennial
 Eucalyptus punctata,perennial
 Eucalyptus resinifera,perennial
 Eucalyptus tereticornis,perennial
-Euchiton involucratus,biennial perennial
+Euchiton sphaericus,annual biennial perennial
 Eustrephus latifolius,perennial
 Exocarpos cupressiformis,perennial
 Gahnia aspera,perennial
@@ -167,6 +167,8 @@ Paspalidium criniforme,perennial
 Paspalidium distans,perennial
 Pelargonium inodorum,annual short_lived_perennial
 Pellaea falcata,perennial
+Persicaria decipiens,annual perennial
+Persicaria lapathifolia,annual biennial perennial
 Persoonia linearis,perennial
 Phragmites australis,perennial
 Phyllanthus gunnii,perennial
@@ -180,7 +182,9 @@ Poa sieberiana,perennial
 Polymeria calycina,perennial
 Polyscias sambucifolia,perennial
 Pomaderris ferruginea,perennial
+Poranthera microphylla,annual perennial short_lived_perennial
 Portulaca oleracea,annual
+Pseudognaphalium luteoalbum,annual biennial perennial
 Pteridium esculentum,perennial
 Pterostylis nutans,perennial
 Pultenaea villosa,perennial

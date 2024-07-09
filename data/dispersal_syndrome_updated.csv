@@ -1,6 +1,5 @@
 taxon_name,dispersal
 Acacia stricta,myrmecochory
-Allocasuarina torulosa,anemochory
 Amphibromus neesii,epizoochory
 Aristida ramosa,epizoochory
 Arthropodium minus,barochory
@@ -32,6 +31,7 @@ Eragrostis benthamii,mixed
 Eragrostis elongata,mixed
 Eragrostis parviflora,barochory
 Eucalyptus sideroxylon,anemochory
+Euchiton japonicus,anemochory
 Euphorbia drummondii,barochory
 Exocarpos strictus,endozoochory
 Gompholobium glabratum,myrmecochory

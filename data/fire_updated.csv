@@ -1,6 +1,5 @@
 taxon_name,resprouting_capacity
 Acacia stricta,resprouting_possible
-Allocasuarina torulosa,resprouting_possible
 Amphibromus neesii,fire_killed
 Aristida ramosa,resprouting_possible
 Arthropodium minus,resprouting_possible
@@ -28,6 +27,7 @@ Eleocharis acuta,resprouting_possible
 Eragrostis elongata,fire_killed
 Eragrostis parviflora,fire_killed
 Eucalyptus sideroxylon,resprouting_possible
+Euchiton japonicus,resprouting_possible
 Euphorbia drummondii,fire_killed
 Exocarpos strictus,resprouting_possible
 Gompholobium glabratum,resprouting_possible

@@ -1,26 +1,26 @@
 {
-    "id": "2BB8A17A",
+    "id": "B6B178A1",
     "path": "~/GitHub/duck-river-traits/R/extract extinct natives from duck river.R",
     "project_path": "R/extract extinct natives from duck river.R",
     "type": "r_source",
-    "hash": "913020643",
+    "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1678618862073.0,
+    "created": 1720089671246.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "62,0",
-        "scrollLine": "45"
+        "cursorPosition": "256,0",
+        "scrollLine": "226"
     },
     "folds": "",
-    "lastKnownWriteTime": 1707307312,
+    "lastKnownWriteTime": 1720349983,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1707307312322,
+    "last_content_update": 1720349983391,
     "read_only": false,
     "read_only_alternatives": []
 }
