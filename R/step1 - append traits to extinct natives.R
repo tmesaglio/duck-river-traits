@@ -3,7 +3,7 @@
 library(tidyverse)
 library(dplyr)
 
-list <- read_csv("species_list.csv")
+list <- read_csv("data/species_list.csv")
 sl<-dplyr::filter(list, mesaglio_2024 == "no")
 
 
@@ -17,7 +17,7 @@ library(austraits)
 austraits::load_austraits(version = "6.0.0")
 
 #for now, line 17 isn't working for me for some reason (it's working for other users), so here's a workaround
-#download the RDS file from https://zenodo.org/records/10156222, rename it to 'austraits', then manually click on the .rds file in file explorer to open it in Rstudio
+#in the austraits folder, manually click on the austraits-6.0.0.rds file to open it in Rstudio
 
 #get traits
 
@@ -53,7 +53,7 @@ APC_sp <-dplyr::select(sl, taxon_name)
 y <- setdiff(APC_sp, check) 
 
 #get height data for those from online sources and append
-height_append<- read_csv("height_append.csv")
+height_append<- read_csv("data/height_append.csv")
 
 pre_master <-dplyr::select(trait1a, taxon_name, max_max_height)
 

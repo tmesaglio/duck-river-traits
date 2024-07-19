@@ -3,7 +3,7 @@
 library(tidyverse)
 library(dplyr)
 
-list <- read_csv("species_list.csv")
+list <- read_csv("data/species_list.csv")
 sl<-dplyr::filter(list, mesaglio_2024 == "yes")
 
 
@@ -13,8 +13,8 @@ remotes::install_github("traitecoevo/austraits", dependencies = TRUE, upgrade = 
 library(austraits) 
 austraits::load_austraits(version = "6.0.0")
 
-#for now, line 17 isn't working for me for some reason (it's working for other users), so here's a workaround
-#download the RDS file from https://zenodo.org/records/10156222, rename it to 'austraits', then manually click on the .rds file in file explorer to open it in Rstudio
+#for now, line 14 isn't working for me for some reason (it's working for other users), so here's a workaround
+#in the austraits folder, manually click on the austraits-6.0.0.rds file to open it in Rstudio
 
 #get traits
 
