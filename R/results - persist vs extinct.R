@@ -128,7 +128,7 @@ p6
 extract_stats(p6)
 
 #for dispersal, since one of the categories was 'generic' zoochory, and other categories such as epizoochory are nested inside it, I've created
-#another column, 'dispersal_coarse', where values are recoded simply to abiotic, biotic, mixed. Let's read in that file and run the same analysis
+#another column, 'dispersal_coarse', where values are recoded simply to abiotic, biotic, mixed. Let's read in that file and run the same analysis out of interest
 
 disp2 <- read_csv("data/final_master_list2.csv")
 
@@ -143,39 +143,7 @@ p7
 
 extract_stats(p7)
 
-#interested to see what happens now when we just subset things to biotic or abiotic
-
-#filter just to biotic
-disp3 <-dplyr::filter(disp2, dispersal_coarse == "biotic")
-
-#also, remove the rows that are only annotated as zoochory, so we are left with the three key specific values (myrmeco, epizoo, endozoo)
-disp3x<-dplyr::filter(disp3, dispersal_syndrome != "zoochory")
-
-
-p8 <- ggbarstats(
-  data = disp3x,
-  x = dispersal_syndrome,
-  y = status
-) +
-  labs(caption = NULL) + theme_classic() + scale_fill_manual(values=cbPalette)
-
-p8
-
-extract_stats(p8)
-
-#now just abiotic instead
-disp4 <-dplyr::filter(disp2, dispersal_coarse == "abiotic")
-
-p9 <- ggbarstats(
-  data = disp4,
-  x = dispersal_syndrome,
-  y = status
-) +
-  labs(caption = NULL) + theme_classic() + scale_fill_manual(values=cbPalette)
-
-p9
-
-extract_stats(p9)
+#back to main program now
 
 #one problem that may exist for some of these traits is that expected counts for some values are very low, 
 #possibly too low for a chi square test to be appropriate (eg growth habit)
@@ -254,20 +222,22 @@ Xsq$stdres     # standardized residual
 
 #water is fine
 
-#I want to check out dispersal syndrome, but removing the 12 species that we could only code as zoochory
+#we will redo dispersal syndrome from above (lines 64-73), but removing the 12 species that we could only code as zoochory
 nozoo<-dplyr::filter(disp2, dispersal_syndrome != "zoochory")
 
-p11 <- ggbarstats(
+p8 <- ggbarstats(
   data = nozoo,
   x = dispersal_syndrome,
   y = status
 ) +
   labs(caption = NULL) + theme_classic() + scale_fill_manual(values=cbPalette)
 
-p11
+p8
 
-extract_stats(p11)
+extract_stats(p8)
 
+
+#now rerun lines 165-175
 M <- as.table(rbind(c(10, 18, 2, 18, 7, 9, 0, 19), c(33, 39, 2, 29, 32, 21, 1, 48)))
 dimnames(M) <- list(gender = c("E", "P"),
                     party = c("myrmecochory", "mixed", "hydrochory", "epizoochory", "endozoochory", "barochory", "ballistic", "anemochory"))
@@ -279,8 +249,8 @@ Xsq$stdres     # standardized residual
 
 #still some low counts here
 
-#so for the six categorical heights, we have potentially problematic low expected count values for four of them: habit, dispersal, photosynthesis, life history
-#for each of these I'm going to instead run a Fisher exact test to try compensate for the low values, as it's designed for both low values and tables larger than 2x2
+#so for the six categorical traits, we have potentially problematic low expected count values for four of them: habit, dispersal, photosynthesis, life history
+#for each of these I'm going to instead run a Fisher exact test to compensate for the low values, as it's designed for both low values and tables larger than 2x2
 
 library(contingencytables)
 

@@ -1,4 +1,4 @@
-#note: I use all the same dataframe/object names as the extract extinct native R script, so don't run this in the same session as that one
+#note: I use all the same dataframe/object names as the 'append traits to extinct natives' R script, so don't run this in the same session as that one
 
 library(tidyverse)
 library(dplyr)

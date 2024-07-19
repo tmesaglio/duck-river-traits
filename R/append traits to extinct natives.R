@@ -1,4 +1,4 @@
-#read in data file of 'extinct' native species from Mesaglio 2024 (https://www.botanicgardens.org.au/sites/default/files/2024-06/RBG0757_Cunninghamia%202024%20Mesaglio-%20Wategora.pdf)
+#read in data file of 'extinct' native species
 
 library(tidyverse)
 library(dplyr)
